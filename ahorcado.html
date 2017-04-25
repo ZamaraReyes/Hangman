@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Ahorcado</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link href="css/ahorcado.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Roboto+Slab:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body onload="cuentaAtras()">
+        <h1>El ahorcado astronómico</h1>
+        <img id="imagen" src="img/1.png">
+        <div class="flex-container">
+            <div id="tiempo"><img src="img/tiempo.png"><p><span id="reloj"></span></p></div>
+            <div id="vidas"><center><img src="img/vida.png"><p id="vida"><span>6 vidas</span></p></center></div>
+            <div id="reiniciar"><img src="img/reiniciar.png"><a href="ahorcado.html" target="_self"><p>Reiniciar</p></a></div>
+        </div>
+        <div id="palabrita"></div>
+        <div><p id="pista"></p></div>
+        <div id="letritas"></div>
+        <div id="result"></div>
+        <div class="flex-container">
+            <div id="ganadas"><p>Ganadas: </p><p id="ganar"><span>0</span></p></div>
+            <div id="perdidas"><p>Perdidas: </p><p id="perder"><span>0</span></p></div>
+            <div id="totales"><p>Total: <span>0</span></p></div>
+        </div>
+        <script src="js/ahorcado.js"></script>
+    </body>
+</html>
