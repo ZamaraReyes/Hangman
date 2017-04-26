@@ -9,10 +9,25 @@ a:link, a:visited {
     text-decoration: none;
 }
 
-h1 {
+h1, h2 {
+    color: #ffffff;
     font-weight: 700;
-    font-size: 42px;
     letter-spacing: 2;
+    font-family: "Roboto Slab", serif;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 24px;
     font-family: "Roboto Slab", serif;
 }
 
@@ -35,6 +50,42 @@ body {
 
 span {
     font-weight: 700;
+}
+
+input, button {
+    font-family: "Lato", sans-serif;
+}
+
+input {
+    padding: 10px;
+    margin: 30px;
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #171B29;
+}
+
+#entrar, #enviar {
+    padding: 5px;
+    width: 100px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #171B29;
+    border: 1px solid #171B29;
+}
+
+#entrar {
+    margin-top: 30px;
+}
+
+#enviar {
+    border: 1px solid #ffffff;
+}
+
+#entrar:hover, #enviar:hover {
+    transition: .3s ease;
+    color: #171B29;
+    background-color: #ffffff;
 }
 
 #imagen {
@@ -69,7 +120,7 @@ span {
 }
 
 #palabrita {
-    padding: 60px;
+    padding: 60px 0 30px 0;
     font-size: 42px;
     letter-spacing: 2;
     font-family: "Roboto Slab", serif;
@@ -103,6 +154,18 @@ span {
     flex: 3;
 }
 
+#usuario {
+    padding: 30px;
+}
+
+#pista {
+    padding-bottom: 40px;
+}
+
+#respuesta p, input {
+    display: inline-block;
+}
+
 .flex-container {
     display: flex;
     width: 60%;
@@ -119,6 +182,7 @@ span {
 }
 
 .correcto {
+    opacity: 0.5;
     background-image: url("../img/check.png");
     color: #7c9321;
     border: 1px solid #7c9321;
@@ -126,8 +190,8 @@ span {
     background-color: rgb(243, 255, 196);
 }
 
-
 .incorrecto {
+    opacity: 0.5;
     background-image: url("../img/cross.png");
     color: #972c31;
     border: 1px solid #972c31;
@@ -141,7 +205,7 @@ span {
     background-position: 12px 15px;
 }
 
-.boton, .correcto, .incorrecto {
+.boton, .correcto, .incorrecto, .desactivado {
     display: inline-block;
     border-radius: 4px;
     padding: 5px 15px;
@@ -151,12 +215,16 @@ span {
     font-family: "Roboto Slab", serif;
 }
 
-.boton {
+.boton, .desactivado {
     flex: 3;
     color: #171B29;
     border: 1px solid #C7D2E5;
     background-color: #ffffff;
     box-shadow: 1px 1px 5px #C7D2E5; 
+}
+
+.desactivado {
+    opacity: 0.5;
 }
 
 .boton:hover {
@@ -168,4 +236,48 @@ span {
 
 .reloj {
     flex: 3;
+}
+
+.ventana {
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.ventana-contenido {
+    background-color: #C7D2E5;
+    margin: auto;
+    padding: 20px 25px 80px 25px;
+    border: 1px solid #C7D2E5;
+    width: 80%;
+}
+
+.ventana-contenido h1 {
+    padding: 60px;
+}
+
+.ventana-contenido h1, h2 {
+    color: #171B29;
+}
+
+.cerrar {
+    width: 16px;
+    height: 22px;
+    float: right;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    line-height: 1;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
 }

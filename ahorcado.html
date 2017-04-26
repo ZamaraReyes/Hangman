@@ -6,16 +6,33 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Roboto+Slab:400,700" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body onload="cuentaAtras()">
+    <body>
         <h1>El ahorcado astronómico</h1>
+        <div class="ventana">
+            <div class="ventana-contenido">
+                <div class="cerrar">
+                    <span class="close">&times;</span>
+                </div>
+                <h1>Bienvenido al ahorcado</h1>
+                <h2>¿Cuál es tu nombre?</h2>
+                <input type="text" id="nombre"><br>
+                <button type="submit" id="entrar">Entrar</button>
+            </div>
+        </div>
         <img id="imagen" src="img/1.png">
+        <div id="usuario"></div>
         <div class="flex-container">
-            <div id="tiempo"><img src="img/tiempo.png"><p><span id="reloj"></span></p></div>
+            <div id="tiempo"><img src="img/tiempo.png"><p><span id="reloj">01:00</span></p></div>
             <div id="vidas"><center><img src="img/vida.png"><p id="vida"><span>6 vidas</span></p></center></div>
             <div id="reiniciar"><img src="img/reiniciar.png"><a href="ahorcado.html" target="_self"><p>Reiniciar</p></a></div>
         </div>
         <div id="palabrita"></div>
         <div><p id="pista"></p></div>
+        <div id="respuesta">
+            <p>¿Ya sabes que palabra es? <span>¡Escríbela!</span></p>
+            <input type="text" id="palabra">
+            <button type="submit" id="enviar">Enviar</button>
+        </div>
         <div id="letritas"></div>
         <div id="result"></div>
         <div class="flex-container">
@@ -23,6 +40,8 @@
             <div id="perdidas"><p>Perdidas: </p><p id="perder"><span>0</span></p></div>
             <div id="totales"><p>Total: <span>0</span></p></div>
         </div>
-        <script src="js/ahorcado.js"></script>
+        <!--<script src="js/ahorcado.js"></script>-->
+        <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+        <script src="js/ahorcadojq.js"></script>
     </body>
 </html>

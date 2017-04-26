@@ -11,7 +11,7 @@ pistita.innerHTML = "<span>Pista: </span>"+pista;
 
 var letrasPalabras = "";
 letrasPalabras = palabraAleatoria.split("");
-alert(letrasPalabras);
+/*alert(letrasPalabras);
 
 /*Creamos un array para almacenar los guiones según la cantidad de letras de la palabraAleatoria*/
 var guiones = [];
@@ -162,13 +162,13 @@ function getCookie(cname) {
 
     var partidas=getCookie("perdidas");
     if (perdidas != "") {
-        alert("Welcome again " + perdidas);
+        /*alert("Welcome again " + perdidas);*/
     } else {
        if (perdidas != "" && perdidas != null) {
            setCookie("perdidas", perdidas, 30);
        }
     }
-alert(perdidas);
+/*alert(perdidas);
 
 /*function myFunction() {
     var x = document.getElementById("myDIV");
@@ -178,3 +178,21 @@ alert(perdidas);
         x.className = "mystyle";
     }
 }*/
+
+
+var modal = document.getElementsByClassName("ventana");
+var span = document.getElementsByClassName("close")[0];
+
+function cerrar() {
+    modal.style.display = "none";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
