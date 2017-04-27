@@ -14,13 +14,27 @@
                     <span class="close">&times;</span>
                 </div>
                 <h1>Bienvenido al ahorcado</h1>
-                <h2>¿Cuál es tu nombre?</h2>
-                <input type="text" id="nombre"><br>
+                <div id ="modojuego">
+                    <h2>Elige un modo de juego</h2>
+                    <input type="radio" id="unJugador"><p>1 jugador</p>
+                    <input type="radio" id="dosJugadores"><p>2 jugadores</p>
+                </div>
+                <div id="nombres">
+                    <h2>¿Cuál es tu nombre?</h2>
+                    <p>Jugador 1</p><input type="text" id="nombre1"><br>
+                    <p>Jugador 2</p><input type="text" id="nombre2"><br>
+                </div>
+                <div id="retar">
+                    <h2>¿Con qué película quieres retar?</h2>
+                    <input type="text" id="pelicula"><br>
+                </div>
                 <button type="submit" id="entrar">Entrar</button>
             </div>
         </div>
         <img id="imagen" src="img/1.png">
-        <div id="usuario"></div>
+        <div id="jugadores">
+            <p>Jugador: <span id="usuario"></span></p>
+        </div>
         <div class="flex-container">
             <div id="tiempo"><img src="img/tiempo.png"><p><span id="reloj">01:00</span></p></div>
             <div id="vidas"><center><img src="img/vida.png"><p id="vida"><span>6 vidas</span></p></center></div>
@@ -34,12 +48,12 @@
             <button type="submit" id="enviar">Enviar</button>
         </div>
         <div id="letritas"></div>
-        <div id="result"></div>
         <div class="flex-container">
             <div id="ganadas"><p>Ganadas: </p><p id="ganar"><span>0</span></p></div>
             <div id="perdidas"><p>Perdidas: </p><p id="perder"><span>0</span></p></div>
             <div id="totales"><p>Total: <span>0</span></p></div>
         </div>
+        <button id="cargar">Cargar</button>
         <!--<script src="js/ahorcado.js"></script>-->
         <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
         <script src="js/ahorcadojq.js"></script>

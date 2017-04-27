@@ -21,6 +21,7 @@ h1 {
 }
 
 h2 {
+    padding: 20px;
     font-size: 32px;
 }
 
@@ -32,6 +33,7 @@ h3 {
 }
 
 p, span {
+    color: #ffffff;
     font-size: 18px;
     line-height: 1.6;
     font-family: "Lato", sans-serif;
@@ -58,9 +60,8 @@ input, button {
 
 input {
     padding: 10px;
-    margin: 30px;
+    margin: 10px;
     width: 300px;
-    height: 30px;
     border-radius: 5px;
     border: 1px solid #171B29;
 }
@@ -154,16 +155,36 @@ input {
     flex: 3;
 }
 
-#usuario {
-    padding: 30px;
-}
-
 #pista {
     padding-bottom: 40px;
 }
 
 #respuesta p, input {
     display: inline-block;
+}
+
+#modojuego {
+    width: 60%;
+}
+
+#modojuego input {
+    width: 12px;
+}
+
+#modojuego p {
+    padding-right: 40px;
+}
+
+#modojuego input, #modojuego p {
+    display: inline-block;
+}
+
+#nombres p:nth-child(5), #nombre2, #retar {
+    opacity: 0.6;
+}
+
+#jugadores {
+    padding: 20px;
 }
 
 .flex-container {
@@ -265,6 +286,10 @@ input {
 
 .ventana-contenido h1, h2 {
     color: #171B29;
+}
+
+.ventana p {
+   color: #171B29; 
 }
 
 .cerrar {
