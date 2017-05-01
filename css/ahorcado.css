@@ -179,9 +179,9 @@ input {
     display: inline-block;
 }
 
-#nombres p:nth-child(5), #nombre2, #retar {
+/*#nombres p:nth-child(5), #nombre2, #retar {
     opacity: 0.6;
-}
+}*/
 
 #jugadores {
     padding: 20px;

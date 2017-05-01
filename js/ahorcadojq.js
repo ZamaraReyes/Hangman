@@ -7,13 +7,9 @@ $(document).ready(function(){
     var frases = ["Sirve para orientarte", "Determina la posición de un astro", "Agrupación que da forma a una figura", "Gas que emite color y forma", "Sirve para observar lo que está muy lejano", "Profesional que observa los astros", "Cuerpo rocoso, más pequeño que un planeta"];
     var pista = frases[numeroAleatorio];
 
-  
     var finJuego = false;
-    var tiempo = null;
-    
+    var tiempo = null;    
     var letrasPalabras = "";
-    letrasPalabras = palabraAleatoria.split("");
-    
     
 
     $(".cerrar").click(function(){
@@ -29,7 +25,7 @@ $(document).ready(function(){
     $("#entrar").click(function(){
         var nombre = $("#nombre1").val();
         var pelicula = $("#pelicula").val();
-        
+
         /* set: recoge el valor */
         var obtenerNombre = localStorage.getItem("nombre1");
         localStorage.setItem("nombre1", nombre);
@@ -44,20 +40,24 @@ $(document).ready(function(){
 
         
         /*if ($("#unJugador").prop( "checked", true )) {
+            $("#dosJugadores").prop( "checked", false )
             $.getJSON("https://omdbapi.com?s="+palabraAleatoria+"&type=movie").then(function(response){
                 var numerito = Math.floor((Math.random() * response.Search.length) + 0);
                 $pelicula = response.Search[numerito];
                 palabraAleatoria = $pelicula.Title;
                 console.log($pelicula.Title);
+                $("#nombre2").css("opacity", "0.5");
+                $("#retar").css("opacity", "0.5");
             });
         } else if ($("#dosJugadores").prop( "checked", true )) {
+            $("#unJugador").prop( "checked", false )
             $.getJSON("https://omdbapi.com?s="+pelicula+"&type=movie").then(function(response){
                 var numerito = Math.floor((Math.random() * response.Search.length) + 0);
                 $pelicula = response.Search[numerito];
                 palabraAleatoria = $pelicula.Title;
                 console.log($pelicula.Title);
-                $("#nombre2").attr("opacity", "1");
-                $("#retar").attr("opacity", "1");
+                $("#nombre2").css("opacity", "1");
+                $("#retar").css("opacity", "1");
             });
         }*/
         
@@ -80,24 +80,7 @@ $(document).ready(function(){
         function cuentaAtras(){
             devolvercero(minutos, segundos);
             segundos = segundos % 60;
-            var hora = ceromin + minutos + ":" + ceroseg + segundos;
-            $("#reloj").html(hora);
-            
-            /*localStorage.setItem("segundos", segundos);
-            var obtenerSegundos = localStorage.getItem("segundos");
-            
-            localStorage.setItem("minutos", minutos);
-            var obtenerMinutos = localStorage.getItem("minutos");
-            
-            var horita = ceromin + obtenerMinutos + ":" + ceroseg + obtenerSegundos;
-
-            
-            if ($("#reloj").text(hora)) {
-                localStorage.setItem("reloj", horita);
-                $("#reloj").html(horita);
-            } else {
-                $("#reloj").html(hora);
-            }*/
+            $("#reloj").html(ceromin + minutos + ":" + ceroseg + segundos);
             
             
             if (finJuego) {
@@ -131,8 +114,6 @@ $(document).ready(function(){
     });
     
 
-
-
     var guiones = [];
 
     for (var i = 0; i < palabraAleatoria.length; i++) {
@@ -142,24 +123,22 @@ $(document).ready(function(){
     var palabraSeparada = guiones.join(" ");
 
     $("#palabrita").append(palabraSeparada);
-        
-    /*var obtenerPalabra = localStorage.getItem("palabraSeparada");
-    localStorage.setItem("palabraSeparada", palabraSeparada);
-        
-    if ($("#palabrita") == "") {
-        alert("d");
-        localStorage.setItem("palabraSeparada", palabraSeparada);
-        $("#palabrita").html(obtenerPalabra);
-    } else {
-        alert("b");
-        $("#palabrita").html(palabraSeparada);
-    }*/
+    
+    
+    /*if (localStorage.palabraAleatoria == undefined) {
+        localStorage.palabraAleatoria = palabraAleatoria;
+    } 
+    alert(localStorage.palabraAleatoria);
+    
+    
+    if (localStorage.guiones == undefined) {
+        localStorage.guiones = guiones;
+    } 
+    alert(localStorage.guiones);*/
 
 
     $("#pista").append("<span>Pista: </span>"+pista);
-    
-    /*localStorage.setItem("pista", pista);
-    var obtenerPista = localStorage.getItem("pista");*/
+
     
     var abecedario = "abcdefghijklmnopqrstuvwxyz";
     abecedario.split("");
@@ -169,11 +148,8 @@ $(document).ready(function(){
     var vidas = 6;
     var ganadas = 0;
     var perdidas = 0;
+    var totales = 0;
    
-    
-    /*localStorage.setItem("palabraSeparada", palabraSeparada);
-    var obtenerLetras = localStorage.getItem("palabraSeparada");
-    $("#palabrita").html(obtenerLetras);*/
     
     for (var i = 0; i < abecedario.length; i++) {
         var botonLetras = $("<button>");
@@ -189,9 +165,20 @@ $(document).ready(function(){
         var respuesta = $("#palabra").val();
         if (respuesta == palabraAleatoria) {
             $("#palabrita").html(palabraAleatoria);
-            $(".boton").prop("disabled", true);
+            $("#palabrita").css("letter-spacing", "8px");
             alert("¡Enhorabuena! ¡Has acertado!");
+            ganadas++;
+            $(".boton").addClass("desactivado");
+            $(".boton").prop("disabled", true);
             finJuego = true;
+            
+            if (localStorage.ganadas == undefined) {
+                localStorage.ganadas = 0;
+            } else {
+                localStorage.ganadas = parseInt(localStorage.ganadas)+1;
+            }
+            $("#ganar").html(localStorage.ganadas);
+            
         } else if (respuesta != palabraAleatoria) {
             alert("¡Qué va! ¡Esa palabra no es! ¡Sigue intentándolo!");
             vidas = vidas-2;
@@ -202,8 +189,8 @@ $(document).ready(function(){
 
     function clickButton(event){
         var letra = this.id;
-        var completado;
-
+        
+        
         if(palabraAleatoria.indexOf(letra) != -1) {
             $("#"+letra).addClass("correcto"); 
         } else {
@@ -212,15 +199,15 @@ $(document).ready(function(){
         $("#"+letra).addClass("desactivado");
         $("#"+letra).prop("disabled", true);
 
+        
         for (var i = 0; i < palabraAleatoria.length; i++) {
             if (palabraAleatoria[i] == letra) {
                 guiones[i] = letra;
-                completado = true;
-            } else {
-                completado = false;
+                letrasPalabras += guiones[i];
             }
             $("#palabrita").html(guiones.join(" "));       
         }
+
 
         if (palabraAleatoria.indexOf(letra) == -1) {
             vidas--;
@@ -231,48 +218,38 @@ $(document).ready(function(){
 
             
             if (vidas == 0) {
-                $("#pista").html("Lo siento <span>¡has perdido!</span> La palabra secreta era <span>"+palabraAleatoria+"</span>");
+                alert("Lo siento, ¡has perdido! La palabra secreta era "+palabraAleatoria);
                 perdidas++;
+                $(".boton").addClass("desactivado");
                 $(".boton").prop("disabled", true);
-                $("#perder").html(perdidas);
                 
-                /*var obtenerPerdidas = localStorage.getItem("perdidas");
-                localStorage.setItem("perdidas", perdidas);
-
-                if (perdidas == 0) {
-                    localStorage.setItem("perdidas", perdidas);
-                    $("#perder").html(obtenerPerdidas);
+                if (localStorage.perdidas == undefined) {
+                    localStorage.perdidas = 0;
                 } else {
-                    $("#perder").html(perdidas);
-                }*/
-                
-            }
+                    localStorage.perdidas = parseInt(localStorage.perdidas)+1;
+                }
+                    $("#perder").html(localStorage.perdidas);
+                }
 
-        } else if (completado == true) {
-                $("#pista").html("¡Felicidades! <span>¡Has ganado!</span>");
+            } else if (letrasPalabras.length == guiones.length) {
+                alert("¡Felicidades! ¡Has ganado!");
                 ganadas++;
+                $(".boton").addClass("desactivado");
                 $(".boton").prop("disabled", true);
+                finJuego = true;
                 
-                /*localStorage.setItem("ganadas", ganadas);
-                var obtenerGanadas = localStorage.getItem("ganadas");*/
-                $("#ganar").html(ganadas);
-        }
-        
-        
-        $("#cargar").click(function(){
-            /*Obtener datos almacenados*/
-            var obtenerVidas = localStorage.getItem("vida");
-            localStorage.setItem("vida", vidas);
-
-            if (vidas == 6) {
-                localStorage.setItem("vida", obtenerVidas);
-                $("#vida").html("<span>"+obtenerVidas+" vidas</span>");
-            } else {
-                $("#vida").html("<span>"+vidas+" vidas</span>");
-            }
-
-        }); 
-        
-    };
-
+                if (localStorage.ganadas == undefined) {
+                    localStorage.ganadas = 0;
+                } else {
+                    localStorage.ganadas = parseInt(localStorage.ganadas)+1;
+                }
+                    $("#ganar").html(localStorage.ganadas);
+                }
+            
+        };
+    
+    $("#perder").html(localStorage.perdidas);
+    $("#ganar").html(localStorage.ganadas);
+    $("#total").html(parseInt(localStorage.perdidas)+parseInt(localStorage.ganadas));
+    
 });
