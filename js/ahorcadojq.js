@@ -10,7 +10,7 @@ $(document).ready(function(){
     var finJuego = false;
     var tiempo = null;    
     var letrasPalabras = "";
-    
+    var peliculaAleatoria = "";
 
     $(".cerrar").click(function(){
         $(".ventana").css("display", "none");
@@ -24,7 +24,6 @@ $(document).ready(function(){
     
     $("#entrar").click(function(){
         var nombre = $("#nombre1").val();
-        var pelicula = $("#pelicula").val();
 
         /* set: recoge el valor */
         var obtenerNombre = localStorage.getItem("nombre1");
@@ -38,28 +37,60 @@ $(document).ready(function(){
             $("#usuario").html(nombre);
         }
 
+        if (pelicula != "") {
+            pelicula = palabraAleatoria;
+        }
         
-        /*if ($("#unJugador").prop( "checked", true )) {
-            $("#dosJugadores").prop( "checked", false )
-            $.getJSON("https://omdbapi.com?s="+palabraAleatoria+"&type=movie").then(function(response){
-                var numerito = Math.floor((Math.random() * response.Search.length) + 0);
-                $pelicula = response.Search[numerito];
-                palabraAleatoria = $pelicula.Title;
-                console.log($pelicula.Title);
-                $("#nombre2").css("opacity", "0.5");
-                $("#retar").css("opacity", "0.5");
-            });
-        } else if ($("#dosJugadores").prop( "checked", true )) {
-            $("#unJugador").prop( "checked", false )
+        
+        $.getJSON("https://omdbapi.com?s="+palabraAleatoria+"&type=movie").then(function(response){
+            var numerito = Math.floor((Math.random() * response.Search.length) + 0);
+            $pelicula = response.Search[numerito];
+            peliculaAleatoria = $pelicula.Title;
+            peliculaAleatoria = peliculaAleatoria.toLowerCase();
+            peliculaAleatoria = peliculaAleatoria.replace(/\s/g,"");
+            peliculaAleatoria = peliculaAleatoria.replace(/á/,"a");
+            peliculaAleatoria = peliculaAleatoria.replace(/é/,"e");
+            peliculaAleatoria = peliculaAleatoria.replace(/í/,"i");
+            peliculaAleatoria = peliculaAleatoria.replace(/ó/,"o");
+            palabraAleatoria = peliculaAleatoria.replace(/ú/,"u");
+            guines(palabraAleatoria);
+        });
+        
+        $("#dos").click(function(){
+            var pelicula = $("#pelicula").val();
+            palabraAleatoria.length = "";
+            $("#palabrita").empty();
             $.getJSON("https://omdbapi.com?s="+pelicula+"&type=movie").then(function(response){
                 var numerito = Math.floor((Math.random() * response.Search.length) + 0);
                 $pelicula = response.Search[numerito];
-                palabraAleatoria = $pelicula.Title;
+                pelicula = $pelicula.Title;
+                pelicula = pelicula.toLowerCase();
+                pelicula = pelicula.replace(/\s/g,"");
+                palabraAleatoria = pelicula;
+                alert(palabraAleatoria);
+                guines(palabraAleatoria);
+            });
+        });
+        /*} else if ($("#dosJugadores").prop( "checked", true )) {*/
+        /*} else if ($("#formulario input[name='dosJugadores']:radio").is(':checked')) {
+            alert("s");
+            $("#unJugador").prop( "checked", true );
+            $.getJSON("https://omdbapi.com?s="+pelicula+"&type=movie").then(function(response){
+                pelicula = palabraAleatoria;
+                var numerito = Math.floor((Math.random() * response.Search.length) + 0);
+                $pelicula = response.Search[numerito];
+                peliculaAleatoria = $pelicula.Title;
+                palabraAleatoria = peliculaAleatoria.toLowerCase();
+                guines(palabraAleatoria);
                 console.log($pelicula.Title);
+                $("#nombre2").prop("disabled", true);
+                $("#retar").prop("disabled", true);
                 $("#nombre2").css("opacity", "1");
                 $("#retar").css("opacity", "1");
             });
-        }*/
+        }
+        });*/
+        
         
         
         $(".ventana").css("display", "none");
@@ -113,17 +144,6 @@ $(document).ready(function(){
         }
     });
     
-
-    var guiones = [];
-
-    for (var i = 0; i < palabraAleatoria.length; i++) {
-        guiones.push("_");
-    }
-
-    var palabraSeparada = guiones.join(" ");
-
-    $("#palabrita").append(palabraSeparada);
-    
     
     /*if (localStorage.palabraAleatoria == undefined) {
         localStorage.palabraAleatoria = palabraAleatoria;
@@ -158,6 +178,50 @@ $(document).ready(function(){
         $(botonLetras).addClass("boton");
         $("#letritas").append(botonLetras);
         botonLetras.click(clickButton);
+    }
+    
+    
+    function limpiar(peliculaAleatoria) {
+        peliculaAleatoria = peliculaAleatoria.replace(/\s/g,"");
+        peliculaAleatoria = peliculaAleatoria.replace(/á/,"a");
+        peliculaAleatoria = peliculaAleatoria.replace(/é/,"e");
+        peliculaAleatoria = peliculaAleatoria.replace(/í/,"i");
+        peliculaAleatoria = peliculaAleatoria.replace(/ó/,"o");
+        peliculaAleatoria = peliculaAleatoria.replace(/ú/,"u");
+    }
+    
+    
+    var guiones = [];
+    
+    function guines(palabraAleatoria) {
+        
+        /*palabraAleatoria = peliculaAleatoria.replace(/\s/g,"");
+        palabraAleatoria = peliculaAleatoria.replace(/á/,"a");
+        palabraAleatoria = peliculaAleatoria.replace(/é/,"e");
+        palabraAleatoria = peliculaAleatoria.replace(/í/,"i");
+        palabraAleatoria = peliculaAleatoria.replace(/ó/,"o");
+        palabraAleatoria = peliculaAleatoria.replace(/ú/,"u");*/
+        
+        for (var i = 0; i < palabraAleatoria.length; i++) {
+            if (palabraAleatoria[i] == "á") {
+                palabraAleatoria[i].replace(/á/,"a");
+            } if (palabraAleatoria[i] == "é") {
+                palabraAleatoria[i].replace(/é/,"e");
+            } if (palabraAleatoria[i] == "í") {
+                palabraAleatoria[i].replace(/í/,"i");
+            } if (palabraAleatoria[i] == "ó") {
+                palabraAleatoria[i].replace(/ó/,"o");
+            } if (palabraAleatoria[i] == "ú") {
+                palabraAleatoria[i].replace(/ú/,"u");
+            }
+            guiones.push("_");
+        }
+        alert(palabraAleatoria);
+
+        var palabraSeparada = guiones.join(" ");
+
+        $("#palabrita").append(palabraSeparada);
+        
     }
     
     
@@ -222,6 +286,7 @@ $(document).ready(function(){
                 perdidas++;
                 $(".boton").addClass("desactivado");
                 $(".boton").prop("disabled", true);
+                finJuego = true;
                 
                 if (localStorage.perdidas == undefined) {
                     localStorage.perdidas = 0;

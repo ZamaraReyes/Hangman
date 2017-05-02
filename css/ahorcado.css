@@ -66,11 +66,13 @@ input {
     border: 1px solid #171B29;
 }
 
-#entrar, #enviar {
+#entrar, #enviar, #dos {
     padding: 5px;
     width: 100px;
+    height: 30px;
     font-size: 14px;
     color: #ffffff;
+    box-sizing: border-box;
     background-color: #171B29;
     border: 1px solid #171B29;
 }
@@ -79,11 +81,11 @@ input {
     margin-top: 30px;
 }
 
-#enviar {
+#enviar, #dos {
     border: 1px solid #ffffff;
 }
 
-#entrar:hover, #enviar:hover {
+#entrar:hover, #enviar:hover, #dos:hover {
     transition: .3s ease;
     color: #171B29;
     background-color: #ffffff;
@@ -138,21 +140,29 @@ input {
 }
 
 #vidas {
-    flex: 3;
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 1;
     font-family: "Lato", sans-serif;
 }
 
-#vidas img, #tiempo img, #reiniciar img {
+#vidas img, #tiempo img, #reiniciar img, #jugadores img {
     width: 25px;
     margin: 0 10px;
     float: left;
 }
 
+#jugadores {
+    flex: 2;
+}
+
+#retar {
+    flex: 4;
+}
+
 #ganadas, #perdidas, #totales {
     flex: 3;
+    padding: 0 40px;
 }
 
 #pista {
@@ -183,13 +193,15 @@ input {
     opacity: 0.6;
 }*/
 
-#jugadores {
-    padding: 20px;
+#retar input {
+    width: 80%;
 }
 
 .flex-container {
+    padding: 10px;
     display: flex;
-    width: 60%;
+    align-items: center;
+    width: 70%;
 }
 
 .flex-container p {
@@ -199,7 +211,7 @@ input {
 }
 
 .flex-container div {
-    padding: 0 40px;
+    padding: 0 0px;
 }
 
 .correcto {

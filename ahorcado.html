@@ -14,31 +14,48 @@
                     <span class="close">&times;</span>
                 </div>
                 <h1>Bienvenido al ahorcado</h1>
-                <div id ="modojuego">
+                <!--<div id ="modojuego">
                     <h2>Elige un modo de juego</h2>
-                    <input type="radio" id="unJugador" checked><p>1 jugador</p>
-                    <input type="radio" id="dosJugadores"><p>2 jugadores</p>
-                </div>
+                    <input type="radio" name="unJugador" >
+                    <p id="unJugador">1 jugador</p>
+                    <input type="radio" name="dosJugadores" id="dosJugadores"><p>2 jugadores</p>
+                </div>-->
                 <div id="nombres">
                     <h2>¿Cuál es tu nombre?</h2>
-                    <p>Jugador 1</p><input type="text" id="nombre1"><br>
-                    <p>Jugador 2</p><input type="text" id="nombre2"><br>
+                    <input type="text" id="nombre1"><br>
+                    <!--<p>Jugador 2</p><input type="text" id="nombre2"><br>-->
                 </div>
-                <div id="retar">
+                <!--<div id="retar">
                     <h2>¿Con qué película quieres retar?</h2>
                     <input type="text" id="pelicula"><br>
-                </div>
+                </div>-->
                 <button type="submit" id="entrar">Entrar</button>
             </div>
         </div>
         <img id="imagen" src="img/1.png">
-        <div id="jugadores">
-            <p>Jugador: <span id="usuario">Anónimo</span></p>
+        <div class="flex-container">
+            <div id="tiempo">
+                <img src="img/tiempo.png">
+                <p><span id="reloj">01:00</span></p></div>
+            <div id="vidas">
+                <img src="img/vida.png">
+                <p id="vida"><span>6 vidas</span></p></div>
+            <div id="reiniciar">
+                <img src="img/reiniciar.png"><a href="ahorcado.html" target="_self"><p>Reiniciar</p></a></div>
         </div>
         <div class="flex-container">
-            <div id="tiempo"><img src="img/tiempo.png"><p><span id="reloj">01:00</span></p></div>
-            <div id="vidas"><center><img src="img/vida.png"><p id="vida"><span>6 vidas</span></p></center></div>
-            <div id="reiniciar"><img src="img/reiniciar.png"><a href="ahorcado.html" target="_self"><p>Reiniciar</p></a></div>
+            <div id="jugadores">
+                <img src="img/user.png">
+                <p><span id="usuario">Anónimo</span></p>
+            </div>
+            <div id="jugadores">
+                <img src="img/users.png">
+                <p><span id="usuario">Anónimo</span></p>
+            </div>
+            <div id="retar">
+                <input type="text" id="pelicula" placeholder="¿Con qué película quieres retar?">
+            </div>
+            <button type="submit" id="dos">Enviar</button>
         </div>
         <div id="palabrita"></div>
         <div><p id="pista"></p></div>
