@@ -38,12 +38,18 @@ $(document).ready(function(){
             $("#usuario").html(nombre);
         }
 
-        
-        $.getJSON("https://omdbapi.com?s="+palabraAleatoria+"&type=movie").then(function(response){
+        $.getJSON("https://omdbapi.com?s="+palabraAleatoria+"&apikey=3370463f").then(function(response){
             var numerito = Math.floor((Math.random() * response.Search.length) + 0);
             $pelicula = response.Search[numerito];
+            console.log($pelicula.Title);
             peliculaAleatoria = $pelicula.Title;
-            palabraAleatoria = peliculaAleatoria;
+            peliculaAleatoria = peliculaAleatoria.toLowerCase();
+            peliculaAleatoria = peliculaAleatoria.replace(/\s/g,"");
+            peliculaAleatoria = peliculaAleatoria.replace(/á/,"a");
+            peliculaAleatoria = peliculaAleatoria.replace(/é/,"e");
+            peliculaAleatoria = peliculaAleatoria.replace(/í/,"i");
+            peliculaAleatoria = peliculaAleatoria.replace(/ó/,"o");
+            palabraAleatoria = peliculaAleatoria.replace(/ú/,"u");
             adivinar(palabraAleatoria);
         });
         
@@ -52,11 +58,19 @@ $(document).ready(function(){
             var pelicula = $("#pelicula").val();
             $("#palabrita").empty();
             guiones = [];
-            $.getJSON("https://omdbapi.com?s="+pelicula+"&type=movie").then(function(response){
+            $.getJSON("https://omdbapi.com?s="+pelicula+"&apikey=3370463f").then(function(response){
                 var numerito = Math.floor((Math.random() * response.Search.length) + 0);
                 $pelicula = response.Search[numerito];
+                console.log($pelicula.Title);
                 pelicula = $pelicula.Title;
-                palabraAleatoria = pelicula;
+                pelicula = pelicula.toLowerCase();
+                pelicula = pelicula.replace(/\s/g,"");
+                pelicula = pelicula.replace(/á/,"a");
+                pelicula = pelicula.replace(/é/,"e");
+                pelicula = pelicula.replace(/í/,"i");
+                pelicula = pelicula.replace(/ó/,"o");
+                pelicula = pelicula.replace(/ú/,"u");
+                palabraAleatoria = pelicula.replace(/:/,"");
                 adivinar(palabraAleatoria);
             });
         });
@@ -92,6 +106,10 @@ $(document).ready(function(){
                 perdidas++;
                 $(".boton").prop("disabled", true);
                 $(".boton").addClass("desactivado");
+                $("#pelicula").css("background-color", "#C7D2E5");
+                $("#dos").prop("disabled", true);
+                $("#palabra").css("background-color", "#C7D2E5");
+                $("#enviar").prop("disabled", true);
                 clearTimeout(tiempo);
             } else if (segundos == 0){
                 minutos--;
@@ -142,31 +160,7 @@ $(document).ready(function(){
     
     function adivinar(palabraAleatoria) {
         
-        palabraAleatoria = palabraAleatoria.toLowerCase();
-        palabraAleatoria = palabraAleatoria.replace(/\s/g,"");
-        palabraAleatoria = palabraAleatoria.replace(/á/,"a");
-        palabraAleatoria = palabraAleatoria.replace(/é/,"e");
-        palabraAleatoria = palabraAleatoria.replace(/í/,"i");
-        palabraAleatoria = palabraAleatoria.replace(/ó/,"o");
-        palabraAleatoria = palabraAleatoria.replace(/ú/,"u");
-        palabraAleatoria = palabraAleatoria.replace(/-/,"");
-        palabraAleatoria = palabraAleatoria.replace(/5/,"");
-        palabraAleatoria = palabraAleatoria.replace(/'/,"");
-        palabraAleatoria = palabraAleatoria.replace(/,/,"");
-        palabraAleatoria = palabraAleatoria.replace(/:/,"");
-        
         for (var i = 0; i < palabraAleatoria.length; i++) {
-            if (palabraAleatoria[i] == "á") {
-                palabraAleatoria[i].replace(/á/,"a");
-            } if (palabraAleatoria[i] == "é") {
-                palabraAleatoria[i].replace(/é/,"e");
-            } if (palabraAleatoria[i] == "í") {
-                palabraAleatoria[i].replace(/í/,"i");
-            } if (palabraAleatoria[i] == "ó") {
-                palabraAleatoria[i].replace(/ó/,"o");
-            } if (palabraAleatoria[i] == "ú") {
-                palabraAleatoria[i].replace(/ú/,"u");
-            }
             guiones.push("_");
         }
 
@@ -185,6 +179,10 @@ $(document).ready(function(){
             ganadas++;
             $(".boton").addClass("desactivado");
             $(".boton").prop("disabled", true);
+            $("#pelicula").css("background-color", "#C7D2E5");
+            $("#dos").prop("disabled", true);
+            $("#palabra").css("background-color", "#C7D2E5");
+            $("#enviar").prop("disabled", true);
             finJuego = true;
             
             if (localStorage.ganadas == undefined) {
@@ -198,6 +196,18 @@ $(document).ready(function(){
             alert("¡Qué va! ¡Esa palabra no es! ¡Sigue intentándolo!");
             vidas = vidas-2;
             $("#vida").html("<span>"+vidas+" vidas</span>");
+
+            if (vidas < 0) {
+                alert("Lo siento, ¡has perdido! La palabra secreta era "+palabraAleatoria);
+                perdidas++;
+                $(".boton").addClass("desactivado");
+                $(".boton").prop("disabled", true);
+                $("#pelicula").css("background-color", "#C7D2E5");
+                $("#dos").prop("disabled", true);
+                $("#palabra").css("background-color", "#C7D2E5");
+                $("#enviar").prop("disabled", true);
+                finJuego = true;
+            }
         }
     });
        
@@ -237,6 +247,10 @@ $(document).ready(function(){
                 perdidas++;
                 $(".boton").addClass("desactivado");
                 $(".boton").prop("disabled", true);
+                $("#pelicula").css("background-color", "#C7D2E5");
+                $("#dos").prop("disabled", true);
+                $("#palabra").css("background-color", "#C7D2E5");
+                $("#enviar").prop("disabled", true);
                 finJuego = true;
                 
                 if (localStorage.perdidas == undefined) {
@@ -252,6 +266,10 @@ $(document).ready(function(){
                 ganadas++;
                 $(".boton").addClass("desactivado");
                 $(".boton").prop("disabled", true);
+                $("#pelicula").css("background-color", "#C7D2E5");
+                $("#dos").prop("disabled", true);
+                $("#palabra").css("background-color", "#C7D2E5");
+                $("#enviar").prop("disabled", true);
                 finJuego = true;
                 
                 if (localStorage.ganadas == undefined) {
